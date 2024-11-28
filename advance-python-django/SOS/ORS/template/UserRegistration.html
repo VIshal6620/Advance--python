@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% include "Header.html" %}
+<form method="Post">
+      {% csrf_token %}
+      <div align="center">
+           <h1> User Registration</h1>
+           <h3><font color="green">{{message}}</font></h3>
+           <table>
+               <tr>
+                   <th>first_name:</th>
+                   <td><input type="text" name="first_name"></td>
+               </tr>
+               <tr>
+                   <th>last_name:</th>
+                   <td><input type="text" name="last_name"></td>
+               </tr>
+               <tr>
+                   <th>login_id:</th>
+                   <td><input type="text" name="login_id"></td>
+               </tr>
+               <tr>
+                   <th>password:</th>
+                   <td><input type="text" name="password"></td>
+               </tr>
+               <tr>
+                   <th>dob:</th>
+                   <td><input type="date" style="width:97%" name="dob"></td>
+               </tr>
+               <tr>
+                   <th>address:</th>
+                   <td><input type="text" name="address"></td>
+               </tr>
+               <tr>
+                   <th></th>
+                   <td><input type="Submit" value="signup"></td>
+               </tr>
+           </table>
+      </div>
+</form>
+</body>
+</html>

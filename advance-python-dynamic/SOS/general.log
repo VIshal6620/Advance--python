@@ -1,0 +1,18 @@
+django.utils.autoreload INFO 2024-11-27 14:44:41,421 autoreload 1808 14220 Watching for file changes with StatReloader
+django.request WARNING 2024-11-27 14:44:44,852 log 1808 14248 Not Found: /favicon.ico
+django.utils.autoreload INFO 2024-11-27 14:45:24,666 autoreload 14900 1244 Watching for file changes with StatReloader
+django.request WARNING 2024-11-27 14:45:26,638 log 14900 13460 Not Found: /favicon.ico
+django.request WARNING 2024-11-27 14:45:42,310 log 14900 13460 Not Found: /debug
+django.request WARNING 2024-11-27 14:46:19,385 log 14900 13460 Not Found: /DEBUG
+django.request WARNING 2024-11-27 14:46:23,927 log 14900 13460 Not Found: /DEBUG
+ORS.views INFO 2024-11-27 14:46:52,960 views 14900 13460 division by zero
+ORS.views DEBUG 2024-11-27 14:46:52,960 views 14900 13460 debug message
+ORS.views INFO 2024-11-27 14:46:52,960 views 14900 13460 info message
+ORS.views WARNING 2024-11-27 14:46:52,960 views 14900 13460 warning message
+ORS.views ERROR 2024-11-27 14:46:52,960 views 14900 13460 error message
+ORS.views CRITICAL 2024-11-27 14:46:52,960 views 14900 13460 critical message
+django.utils.autoreload INFO 2024-12-05 12:39:36,119 autoreload 18140 18900 Watching for file changes with StatReloader
+django.request WARNING 2024-12-05 12:39:38,388 log 18140 13528 Not Found: /favicon.ico
+django.utils.autoreload INFO 2024-12-05 19:50:47,861 autoreload 2960 9980 Watching for file changes with StatReloader
+django.utils.autoreload INFO 2024-12-11 11:17:42,401 autoreload 14084 16744 Watching for file changes with StatReloader
+django.request WARNING 2024-12-11 11:17:46,905 log 14084 16760 Not Found: /favicon.ico

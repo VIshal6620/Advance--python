@@ -6,7 +6,6 @@ from .BaseCtl import BaseCtl
 from ..models import User
 from ..Service.UserService import UserService
 from ..Service.RoleService import RoleService
-from ..Service.AttributeService import AttributeService
 
 
 class UserCtl(BaseCtl):

@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render
 from ..ctl.BaseCtl import BaseCtl
 from ..models import Attribute
 from ..Service.AttributeService import AttributeService
@@ -27,6 +27,7 @@ class AttributeCtl(BaseCtl):
     def model_to_form(self, obj):
         if obj is None:
             return
+        self.form['id'] = obj.id
         self.form['display'] = obj.display
         self.form['datatype'] = obj.datatype
         self.form['isActive'] = obj.isActive
@@ -41,23 +42,23 @@ class AttributeCtl(BaseCtl):
             self.form['error'] = True
         else:
             if (DataValidator.isalphacehck(self.form['display'])):
-                inputError['display'] = "Name only contain Letters"
+                inputError['display'] = "display only contain Letters"
                 self.form['error'] = True
 
         if (DataValidator.isNull(self.form['datatype'])):
-            inputError['datatype'] = "DataType is Required"
+            inputError['datatype'] = "Datatype is Required"
             self.form['error'] = True
         else:
             if (DataValidator.isalphacehck(self.form['datatype'])):
-                inputError['datatype'] = "Name only contain Letters"
+                inputError['datatype'] = "Datatype only contain Letters"
                 self.form['error'] = True
 
         if (DataValidator.isNull(self.form['isActive'])):
-            inputError['isActive'] = "IsActive is Required"
+            inputError['isActive'] = "Display is Required"
             self.form['error'] = True
         else:
             if (DataValidator.isalphacehck(self.form['isActive'])):
-                inputError['isActive'] = "Name only contain Letters"
+                inputError['isActive'] = "isActive only contain Letters"
                 self.form['error'] = True
 
         if (DataValidator.isNull(self.form['description'])):
@@ -77,10 +78,9 @@ class AttributeCtl(BaseCtl):
     def submit(self, request, params={}):
         r = self.form_to_model(Attribute())
         self.get_service().save(r)
-        self.form['message'] = "Data saved Successfully"
+        self.form['message'] = "Data saved successfully"
         res = render(request, self.get_template(), {'form': self.form})
         return res
-
 
     def get_template(self):
         return "Attribute.html"

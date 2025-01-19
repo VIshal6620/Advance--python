@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .BaseCtl import BaseCtl
-from ..models import Attribute
 from ..Service.AttributeService import AttributeService
+from ..models import Attribute
 
 
 class AttributeListCtl(BaseCtl):
@@ -11,6 +11,7 @@ class AttributeListCtl(BaseCtl):
         self.form['display'] = requestForm.get("display", None)
         self.form['datatype'] = requestForm.get("datatype", None)
         self.form['isActive'] = requestForm.get("isActive", None)
+        self.form['description'] = requestForm.get("description", None)
         self.form['ids'] = requestForm.getlist('ids', None)
 
     def display(self, request, params={}):
@@ -37,10 +38,6 @@ class AttributeListCtl(BaseCtl):
         self.page_list = records['data']
         self.form['lastId'] = Attribute.objects.last().id
         res = render(request, self.get_template(), {'pageList': self.page_list, 'form': self.form})
-        return res
-
-    def new(self, request, params={}):
-        res = redirect("/ORS/Attribute/")
         return res
 
     def deleteRecord(self, request, params={}):

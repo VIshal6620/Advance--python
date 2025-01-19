@@ -9,7 +9,7 @@
 <form action="/ORS/Attribute/" method="POST">
     {% csrf_token %}
     <div align="center">
-        <h1>Add Attribute</h1>
+        <h1>Attribute User</h1>
         <h3><font color="green">{{ form.message }}</font></h3>
         <table>
             <input type="hidden" name="id" value="{{form.id}}">
@@ -24,18 +24,19 @@
                 <td style="position: fixed; color: red;"> {{ form.inputError.datatype }}</td>
             </tr>
             <tr>
-                <th>IsActive:</th>
+                <th>isActive:</th>
                 <td><input type="text" name="isActive" value="{{form.isActive}}"></td>
                 <td style="position: fixed; color: red;"> {{ form.inputError.isActive }}</td>
             </tr>
             <tr>
-                <th>Description :</th>
+                <th>Description:</th>
                 <td><input type="text" name="description" value="{{form.description}}"></td>
                 <td style="position: fixed; color: red;"> {{ form.inputError.description }}</td>
             </tr>
             <tr>
-                 <th></th>
-                 <td><input type="submit" value="save"></td>
+                <th></th>
+                <td><input type="submit" value="save"></td>
+
             </tr>
         </table>
     </div>

@@ -26,10 +26,10 @@
         <tr>
             <th><input type="checkbox" id="selectall"></th>
             <th>S. No.</th>
-            <th>display</th>
-            <th>datatype</th>
-            <th>isActive</th>
-            <th>description</th>
+            <th>Display</th>
+            <th>Datatype</th>
+            <th>IsActive</th>
+            <th>Description</th>
             <th>Edit</th>
         </tr>
         {% for l in pageList %}
@@ -50,11 +50,9 @@
             <td style="width: 30%">
                 <input type="submit" name="operation" value="previous" {% if form.pageNo == 1 %} disabled {% endif %}>
             </td>
-            <td style="width: 30%">
-                <input type="submit" name="operation" value="new">
-            </td>
-            <td style="width: 25%"><input type="submit" name="operation"
-                                          value="delete"></td>
+
+            <td style="width: 25%"><input type="submit" name="operation" value="delete"></td>
+
             <td style="text-align: right;">
                 <input type="submit" name="operation" value="next" {% if pageList|length < 5 %} disabled {% endif %}>
             </td>

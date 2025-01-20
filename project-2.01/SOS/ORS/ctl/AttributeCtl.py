@@ -3,9 +3,28 @@ from ..ctl.BaseCtl import BaseCtl
 from ..models import Attribute
 from ..Service.AttributeService import AttributeService
 from ..utility.DataValidator import DataValidator
+from ..utility.HtmlUtility import HTMLUtility
 
 
 class AttributeCtl(BaseCtl):
+
+    def preload(self, request, params):
+
+        self.form["isActive"] = request.POST.get('isActive', '')
+
+
+        if (params['id'] > 0):
+            obj = self.get_service().get(params['id'])
+            self.form["isActive"] = obj.isActive
+
+        self.static_preload = {"Yes": "Yes", "No": "No"}
+
+        self.form["preload"]["isActive"] = HTMLUtility.get_list_from_dict(
+            'isActive',
+            self.form["isActive"],
+            self.static_preload
+        )
+
 
     def request_to_form(self, requestForm):
         self.form['id'] = requestForm['id']
@@ -81,6 +100,7 @@ class AttributeCtl(BaseCtl):
         self.form['message'] = "Data saved successfully"
         res = render(request, self.get_template(), {'form': self.form})
         return res
+
 
     def get_template(self):
         return "Attribute.html"

@@ -67,7 +67,7 @@ class AttributeListCtl(BaseCtl):
         records = self.get_service().search(self.form)
         self.page_list = records['data']
         if self.page_list == []:
-            self.form['message'] = "No record found"
+           self.form['message'] = "No record found"
         res = render(request, self.get_template(), {'pageList': self.page_list, 'form': self.form})
         return res
 

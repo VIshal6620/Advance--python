@@ -54,3 +54,19 @@ class Attribute(models.Model):
 
     class Meta:
         db_table = 'sos_attribute'
+
+
+class Initiative(models.Model):
+    initiativeName = models.CharField(max_length=50)
+    type = models.CharField(max_length=50)
+    startDate = models.DateField(max_length=25)
+    version = models.IntegerField(max_length=30)
+
+    def get_key(self):
+        return str(self.id)
+
+    def get_value(self):
+        return self.initiativeName
+
+    class Meta:
+        db_table = 'sos_initiative'

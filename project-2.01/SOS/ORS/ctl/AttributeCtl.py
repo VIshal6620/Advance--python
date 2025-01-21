@@ -101,7 +101,6 @@ class AttributeCtl(BaseCtl):
         res = render(request, self.get_template(), {'form': self.form})
         return res
 
-
     def get_template(self):
         return "Attribute.html"
 

@@ -91,6 +91,9 @@ class AttributeCtl(BaseCtl):
         return self.form['error']
 
     def display(self, request, params={}):
+        if (params['id'] > 0):
+            obj = self.get_service().get(params['id'])
+            self.model_to_form(obj)
         res = render(request, self.get_template(), {'form': self.form})
         return res
 

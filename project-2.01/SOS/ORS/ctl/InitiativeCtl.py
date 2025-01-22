@@ -42,8 +42,8 @@ class InitiativeCtl(BaseCtl):
             self.form['error'] = True
         else:
             if DataValidator.isalphacehck(self.form['initiativeName']):
-             inputError['initiativeName'] = "Initiative Name must contain only letters."
-             self.form['error'] = True
+                inputError['initiativeName'] = "Initiative Name must contain only letters."
+                self.form['error'] = True
 
         if DataValidator.isNull(self.form['type']):
             inputError['type'] = "Type is required."
@@ -72,6 +72,9 @@ class InitiativeCtl(BaseCtl):
         return self.form['error']
 
     def display(self, request, params={}):
+        if (params['id'] > 0):
+            obj = self.get_service().get(params['id'])
+            self.model_to_form(obj)
         res = render(request, self.get_template(), {'form': self.form})
         return res
 

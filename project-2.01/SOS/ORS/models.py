@@ -70,3 +70,20 @@ class Initiative(models.Model):
 
     class Meta:
         db_table = 'sos_initiative'
+
+
+class Employee(models.Model):
+    fullName = models.CharField(max_length=50)
+    userName = models.EmailField()
+    password = models.CharField(max_length=50)
+    birthDate = models.DateField(max_length=30)
+    contactNumber = models.CharField(max_length=15, default='')
+
+    def get_key(self):
+        return str(self.id)
+
+    def get_value(self):
+        return self.fullName
+
+    class Meta:
+        db_table = 'sos_employee'

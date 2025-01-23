@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% include "Header.html" %}
+<form method="POST">
+    {% csrf_token %}
+    <div align="center">
+        <h1>ADD Employee</h1>
+        <h3><font color="red">{{ form.message }}</font></h3>
+        <table>
+            <input type="hidden" name="id" value="{{form.id}}">
+            <tr>
+                <th>FullName:</th>
+                <td><input type="text" name="fullName" value="{{form.fullName}}"></td>
+                <td style="position: fixed; color: red;">{{ form.inputError.fullName }}</td>
+            </tr>
+            <tr>
+                <th>UserName</th>
+                <td><input type="text" name="userName" value="{{form.userName}}"></td>
+                <td style="position: fixed; color: red">{{ form.inputError.userName }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td><input type="text" name="password" value="{{form.password}}"></td>
+                <td style="position: fixed; color: red">{{ form.inputError.password }}</td>
+            </tr>
+            <tr>
+                <th>BirthDate</th>
+                <td><input type="date" name="birthDate" value="{{form.birthDate}}"></td>
+                <td style="position: fixed; color: red;">{{ form.inputError.birthDate }}</td>
+            </tr>
+            <tr>
+                <th>ContactNumber</th>
+                <td><input type="text" name="contactNumber" value="{{form.contactNumber}}"></td>
+                <td style="position: fixed; color: red;">{{ form.inputError.contactNumber }}</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><input type="submit" value="save"></td>
+            </tr>
+        </table>
+    </div>
+</form>
+</body>
+</html>

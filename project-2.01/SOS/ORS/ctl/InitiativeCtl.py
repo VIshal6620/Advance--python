@@ -56,18 +56,18 @@ class InitiativeCtl(BaseCtl):
         if DataValidator.isNull(self.form["startDate"]):
             inputError["startDate"] = "Start Date is required."
             self.form["error"] = True
-        # else:
-        #     if DataValidator.isalphacehck(self.form["startDate"]):
-        #         inputError["startDate"] = "Start Date YYYY-MM-DD."
-        #         self.form["error"] = True
+        else:
+            if DataValidator.isDate(self.form["startDate"]):
+                inputError["startDate"] = "Start Date YYYY-MM-DD."
+                self.form["error"] = True
 
         if DataValidator.isNull(self.form['version']):
             inputError['version'] = "Version is required."
             self.form['error'] = True
-        # else:
-        #     if DataValidator.isalphacehck(self.form['version']):
-        #         inputError['version'] = "version  only contain Letters"
-        #         self.form['error'] = True
+        else:
+            if DataValidator.isNull(self.form['version']):
+                inputError['version'] = "version  only contain Letters"
+                self.form['error'] = True
 
         return self.form['error']
 

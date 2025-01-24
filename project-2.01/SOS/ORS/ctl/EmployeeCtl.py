@@ -46,32 +46,30 @@ class EmployeeCtl(BaseCtl):
             self.form['error'] = True
         else:
             if (DataValidator.isalphacehck(self.form['fullName'])):
-                inputError['fullName'] = 'fullName is contain'
+                inputError['fullName'] = 'Only Charecter Type Data'
                 self.form['error'] = True
 
         if (DataValidator.isNull(self.form['userName'])):
             inputError['userName'] = "userName is Required"
             self.form['error'] = True
         else:
-            if (DataValidator.isNull(self.form['userName'])):
-                inputError['userName'] = "userName is contain"
+            if (DataValidator.isemail(self.form['userName'])):
+                inputError['userName'] = "Login ID must be like student@gmail.com"
                 self.form['error'] = True
 
         if (DataValidator.isNull(self.form['password'])):
             inputError['password'] = "password is Required"
             self.form['error'] = True
         else:
-            if (DataValidator.isalphacehck(self.form['password'])):
+            if (DataValidator.isNull(self.form['password'])):
                 inputError['password'] = "password is contain"
                 self.form['error'] = True
 
         if (DataValidator.isNull(self.form['birthDate'])):
-            print('birth date nulll ======> ')
             inputError['birthDate'] = "birthDate  is required"
             self.form['error'] = True
         else:
             if (DataValidator.isDate(self.form['birthDate'])):
-                print('birth date date ======> ')
                 inputError['birthDate'] = "Incorrect birthDate, should be YYYY-MM-DD"
                 self.form['error'] = True
 
@@ -79,17 +77,16 @@ class EmployeeCtl(BaseCtl):
             inputError['contactNumber'] = "contactNumber is Required"
             self.form['error'] = True
         else:
-            if (DataValidator.isalphacehck(self.form['contactNumber'])):
+            if (DataValidator.isphonecheck(self.form['contactNumber'])):
                 inputError['contactNumber'] = "contactNumber is Required"
                 self.form['error'] = True
         return self.form['error']
 
-
     def display(self, request, params={}):
-        if (params['id']>0):
-            obj =self.get_service().get(params['id'])
+        if (params['id'] > 0):
+            obj = self.get_service().get(params['id'])
             self.model_to_form(obj)
-        res = render(request,self.get_template(),{'form':self.form})
+        res = render(request, self.get_template(), {'form': self.form})
         return res
 
     def submit(self, request, params={}):

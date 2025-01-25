@@ -42,7 +42,7 @@ class EmployeeCtl(BaseCtl):
         inputError = self.form['inputError']
 
         if (DataValidator.isNull(self.form['fullName'])):
-            inputError['fullName'] = "fullName is Required"
+            inputError['fullName'] = "FullName is Required"
             self.form['error'] = True
         else:
             if (DataValidator.isalphacehck(self.form['fullName'])):
@@ -50,7 +50,7 @@ class EmployeeCtl(BaseCtl):
                 self.form['error'] = True
 
         if (DataValidator.isNull(self.form['userName'])):
-            inputError['userName'] = "userName is Required"
+            inputError['userName'] = "UserName is Required"
             self.form['error'] = True
         else:
             if (DataValidator.isemail(self.form['userName'])):
@@ -58,15 +58,15 @@ class EmployeeCtl(BaseCtl):
                 self.form['error'] = True
 
         if (DataValidator.isNull(self.form['password'])):
-            inputError['password'] = "password is Required"
+            inputError['password'] = "Password is Required"
             self.form['error'] = True
         else:
-            if (DataValidator.isNull(self.form['password'])):
-                inputError['password'] = "password is contain"
+            if (DataValidator.isInteger(self.form['password'])):
+                inputError['password'] = "Password is contain"
                 self.form['error'] = True
 
         if (DataValidator.isNull(self.form['birthDate'])):
-            inputError['birthDate'] = "birthDate  is required"
+            inputError['birthDate'] = "BirthDate  is required"
             self.form['error'] = True
         else:
             if (DataValidator.isDate(self.form['birthDate'])):
@@ -74,11 +74,11 @@ class EmployeeCtl(BaseCtl):
                 self.form['error'] = True
 
         if (DataValidator.isNull(self.form['contactNumber'])):
-            inputError['contactNumber'] = "contactNumber is Required"
+            inputError['contactNumber'] = "ContactNumber is Required"
             self.form['error'] = True
         else:
             if (DataValidator.isphonecheck(self.form['contactNumber'])):
-                inputError['contactNumber'] = "contactNumber is Required"
+                inputError['contactNumber'] = "ContactNumber is Required"
                 self.form['error'] = True
         return self.form['error']
 

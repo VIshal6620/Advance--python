@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 </head>
 <body>
 {% include "Header.html" %}
@@ -28,7 +30,7 @@
                 <td><input type="text" name="description" value="{{form.description}}"></td>
                 <td style="position: fixed; color: red;"> {{ form.inputError.description }}</td>
             </tr>
-             <tr>
+            <tr>
                 <th>isActive:</th>
                 <td>
                     {{ form.preload.isActive|safe }}

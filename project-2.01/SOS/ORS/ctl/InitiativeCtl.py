@@ -65,8 +65,8 @@ class InitiativeCtl(BaseCtl):
             inputError['version'] = "Version is required."
             self.form['error'] = True
         else:
-            if DataValidator.isNull(self.form['version']):
-                inputError['version'] = "version  only contain Letters"
+            if DataValidator.isInteger(self.form['version']):
+                inputError['version'] = "version  only contain Numbers"
                 self.form['error'] = True
 
         return self.form['error']

@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 </head>
 <body>
 {% include "Header.html" %}
@@ -27,10 +29,10 @@
             <th><input type="checkbox" id="selectall"></th>
             <th>S. No.</th>
             <th>FullName</th>
-            <th>userName</th>
-            <th>password</th>
-            <th>birthDate</th>
-            <th>contactNumber</th>
+            <th>UserName</th>
+            <th>Password</th>
+            <th>BirthDate</th>
+            <th>ContactNumber</th>
             <th>Edit</th>
         </tr>
         {% for l in pageList %}

@@ -8,6 +8,21 @@ from ..models import Initiative
 
 class InitiativeCtl(BaseCtl):
 
+    def preload(self, request, params):
+
+        self.form["type"] = request.POST.get('type', '')
+
+        if (params['id'] > 0):
+            obj = self.get_service().get(params['id'])
+            self.form["type"] = obj.isActive
+
+        self.static_preload = {"Automatic": "Automatic", "Manually": "Manually"}
+
+        self.form["preload"]["type"] = HTMLUtility.get_list_from_dict(  'type',
+            self.form["type"],
+            self.static_preload
+        )
+
     def request_to_form(self, requestForm):
         self.form['id'] = requestForm.get('id', 0)
         self.form['initiativeName'] = requestForm.get('initiativeName', '')

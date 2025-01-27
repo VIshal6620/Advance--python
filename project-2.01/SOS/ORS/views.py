@@ -16,6 +16,8 @@ from .ctl.InitiativeCtl import InitiativeCtl
 from .ctl.InitiativeListCtl import InitiativeListCtl
 from .ctl.EmployeeCtl import EmployeeCtl
 from .ctl.EmployeeListCtl import EmployeeListCtl
+from .ctl.ClientCtl import ClientCtl
+from .ctl.ClientListCtl import ClientListCtl
 
 
 @csrf_exempt

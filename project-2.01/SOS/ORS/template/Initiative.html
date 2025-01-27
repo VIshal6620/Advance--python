@@ -22,7 +22,9 @@
             </tr>
             <tr>
                 <th>Type:</th>
-                <td><input type="text" name="type" value="{{form.type}}"></td>
+                <td>
+                    {{ form.preload.type | safe }}
+                </td>
                 <td style="position: fixed; color: red;">{{ form.inputError.type }}</td>
             </tr>
             <tr>

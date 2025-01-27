@@ -87,3 +87,19 @@ class Employee(models.Model):
 
     class Meta:
         db_table = 'sos_employee'
+
+
+class Client(models.Model):
+    fullName = models.CharField(max_length=50)
+    appointmentDate = models.DateField(max_length=40)
+    phone = models.CharField(max_length=15, default='')
+    illness = models.CharField(max_length=50)
+
+    def get_key(self):
+        return str(self.id)
+
+    def get_value(self):
+        return self.fullName
+
+    class Meta:
+        db_table ='sos_Client'

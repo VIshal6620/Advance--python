@@ -1,18 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from ..Service.ClientService import ClientService
 from ..ctl.BaseCtl import BaseCtl
 from ..models import Client
 
 
 class ClientListCtl(BaseCtl):
+    count = 1
 
     def request_to_form(self, requestForm):
         self.form['fullName'] = requestForm.get("fullName", None)
         self.form['appointmentDate'] = requestForm.get("appointmentDate", None)
         self.form['phone'] = requestForm.get("phone", None)
         self.form['illness'] = requestForm.get("illness", None)
-        self.form['ids'] = requestForm.get("ids", None)
-
+        self.form['ids'] = requestForm.getlist('ids', None)
 
     def display(self, request, params={}):
         ClientListCtl.count = self.form['pageNo']
@@ -40,6 +40,7 @@ class ClientListCtl(BaseCtl):
         res = render(request, self.get_template(), {'pageList': self.page_list, 'form': self.form})
         return res
 
+
     def deleteRecord(self, request, params={}):
         if not self.form['ids']:
             self.form['error'] = True
@@ -48,12 +49,12 @@ class ClientListCtl(BaseCtl):
             for id in self.form['ids']:
                 id = int(id)
                 record = self.get_service().get(id)
-                if record:
-                    self.get_service().delete(id)
-                    self.form['message'] = "Data has been deleted successfully"
-                else:
-                    self.form['error'] = True
-                    self.form['message'] = "Data was not deleted"
+            if record:
+                self.get_service().delete(id)
+                self.form['message'] = "Data has been deleted successfully"
+            else:
+                self.form['error'] = True
+                self.form['message'] = "Data was not deleted"
 
         self.form['pageNo'] = 1
         records = self.get_service().search(self.form)

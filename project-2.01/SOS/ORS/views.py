@@ -18,6 +18,8 @@ from .ctl.EmployeeCtl import EmployeeCtl
 from .ctl.EmployeeListCtl import EmployeeListCtl
 from .ctl.ClientCtl import ClientCtl
 from .ctl.ClientListCtl import ClientListCtl
+from .ctl.PhysicianCtl import PhysicianCtl
+from .ctl.PhysicianListCtl import PhysicianListCtl
 
 
 @csrf_exempt

@@ -14,7 +14,7 @@ class InitiativeCtl(BaseCtl):
 
         if (params['id'] > 0):
             obj = self.get_service().get(params['id'])
-            self.form["type"] = obj.isActive
+            self.form["type"] = obj.type
 
         self.static_preload = {"Automatic": "Automatic", "Manually": "Manually"}
 

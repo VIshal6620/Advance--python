@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Physician List</title>
+</head>
+<body>
+
+    {% include "Header.html" %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div align="center">
+            <h1>Physician List</h1>
+            {% if form.message %}
+                <h3 style="color: red;">{{ form.message }}</h3>
+            {% endif %}
+        </div>
+
+        <div align="center">
+            <table>
+                <tr>
+                    <th>Full Name:</th>
+                    <td><input type="text" name="fullName" placeholder="Enter full name"></td>
+                    <td><input type="submit" name="operation" value="Search"></td>
+                </tr>
+            </table>
+        </div>
+
+        <br>
+
+        <table border="1" width="100%">
+            <tr>
+                <th><input type="checkbox" id="selectall"></th>
+                <th>S.No</th>
+                <th>Full Name</th>
+                <th>Birth Date</th>
+                <th>Phone</th>
+                <th>Specialization</th>
+                <th>Edit</th>
+            </tr>
+
+            {% for l in pageList %}
+            <tr>
+                <td align="center"><input type="checkbox" class="case" name="ids" value="{{ l.id }}"></td>
+                <td align="center">{{ forloop.counter }}</td>
+                <td align="center">{{ l.fullName }}</td>
+                <td align="center">{{ l.birthDate|date:"Y-m-d" }}</td>
+                <td align="center">{{ l.phone }}</td>
+                <td align="center">{{ l.specialization }}</td>
+                <td align="center"><a href="/ORS/Physician/Edit/{{ l.id }}">edit</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <br>
+
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 30%;">
+                    <input type="submit" name="operation" value="Previous" {% if form.pageNo == 1 %} disabled {% endif %}>
+                </td>
+
+                <td style="width: 30%; text-align: center;">
+                    <input type="submit" name="operation" value="Delete">
+                </td>
+
+                <td style="width: 30%; text-align: right;">
+                    <input type="submit" name="operation" value="Next" {% if pageList|length < 5 %} disabled {% endif %}>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>

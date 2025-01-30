@@ -81,11 +81,11 @@ class PhysicianCtl(BaseCtl):
         return res
 
     def submit(self, request, params={}):
-        if not self.input_validation():
-            obj = self.form_to_model(Physician())
-            self.get_service().save(obj)
-            self.form['message'] = "Data saved successfully"
-        return render(request, self.get_template(), {'form': self.form})
+        r = self.form_to_model(Physician())
+        self.get_service().save(r)
+        self.form['message'] = "Data saved successfully"
+        res = render(request, self.get_template(), {'form': self.form})
+        return res
 
     def get_template(self):
         return "Physician.html"

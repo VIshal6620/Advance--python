@@ -18,7 +18,6 @@ class ClientListCtl(BaseCtl):
         ClientListCtl.count = self.form['pageNo']
         records = self.get_service().search(self.form)
         self.page_list = records['data']
-        self.form['lastId'] = Client.objects.last().id
         res = render(request, self.get_template(), {'pageList': self.page_list, 'form': self.form})
         return res
 
@@ -59,7 +58,6 @@ class ClientListCtl(BaseCtl):
         self.form['pageNo'] = 1
         records = self.get_service().search(self.form)
         self.page_list = records['data']
-        self.form['lastId'] = Client.objects.last().id
         return render(request, self.get_template(), {'pageList': self.page_list, 'form': self.form})
 
     def submit(self, request, params={}):

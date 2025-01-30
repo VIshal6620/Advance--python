@@ -119,3 +119,19 @@ class Physician(models.Model):
 
     class Meta:
         db_table = 'sos_Physician'
+
+
+class Medication(models.Model):
+    fullName = models.CharField(max_length=30)
+    illness = models.CharField(max_length=50)
+    prescriptionDate = models.DateField(max_length=20)
+    dosage = models.CharField(max_length=8)
+
+    def get_key(self):
+        return str(self.id)
+
+    def get_value(self):
+        return self.fullName
+
+    class Meta:
+        db_table = 'sos_Medication'

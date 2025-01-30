@@ -5,6 +5,7 @@ from ..models import Physician
 
 
 class PhysicianListCtl(BaseCtl):
+    count = 1
 
     def request_to_form(self, requestForm):
         self.form['fullName'] = requestForm.get('fullName', None)
@@ -12,12 +13,10 @@ class PhysicianListCtl(BaseCtl):
         self.form['phone'] = requestForm.get('phone', None)
         self.form['ids'] = requestForm.getlist('ids', None)
 
-
     def display(self, request, params={}):
         PhysicianListCtl.count = self.form['pageNo']
         records = self.get_service().search(self.form)
         self.page_list = records['data']
-        self.form['lastId'] = Physician.objects.last().id
         res = render(request, self.get_template(), {'pageList': self.page_list, 'form': self.form})
         return res
 
@@ -27,45 +26,44 @@ class PhysicianListCtl(BaseCtl):
         records = self.get_service().search(self.form)
         self.page_list = records['data']
         self.form['lastId'] = Physician.objects.last().id
-        res = records(render, self.get_template(), {'pageList': self.page_list, 'form': self.form})
+        res = render(request, self.get_template(), {"pageList": self.page_list, "form": self.form})
         return res
 
     def previous(self, request, params={}):
-        PhysicianListCtl.count - +1
+        PhysicianListCtl.count -= 1
         self.form['pageNo'] = PhysicianListCtl.count
         records = self.get_service().search(self.form)
         self.page_list = records['data']
         self.form['lastId'] = Physician.objects.last().id
-        res = records(render, self.get_template(), {'pageList': self.page_list, 'form': self.form})
+        res = render(request, self.get_template(), {'pageList': self.page_list, 'form': self.form})
         return res
 
-    def deleteRecords(self, request, params={}):
+    def deleteRecord(self, request, params={}):
         if not self.form['ids']:
             self.form['error'] = True
-            self.form['message'] = "please select at lest one checkbox"
+            self.form['message'] = "Please select at least one checkbox"
         else:
             for id in self.form['ids']:
                 id = int(id)
-                records = self.get_service().get(id)
-                if records:
-                    self.get_service().get(id)
-                    self.form['message'] = "Data has been delete successfully"
+                record = self.get_service().get(id)
+                if record:
+                    self.get_service().delete(id)
+                    self.form['message'] = "Data has been deleted successfully"
                 else:
                     self.form['error'] = True
                     self.form['message'] = "Data was not delete"
 
-            self.form['pageNo'] = 1
-            records = self.get_service().search(self.form)
-            self.page_list = records['data']
-            self.form['lastId'] = Physician.objects.last().id
-            return render(request, self.get_template(), {'pageList': self.page_list, 'form': self.form})
+        self.form['pageNo'] = 1
+        records = self.get_service().search(self.form)
+        self.page_list = records['data']
+        return render(request, self.get_template(), {'pageList': self.page_list, 'form': self.form})
 
     def submit(self, request, params={}):
         PhysicianListCtl.count = 1
         records = self.get_service().search(self.form)
         self.page_list = records['data']
         if self.page_list == []:
-            self.form['message'] = "No records found"
+            self.form['message'] = "No record found"
         res = render(request, self.get_template(), {'pageList': self.page_list, 'form': self.form})
         return res
 

@@ -3,14 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+     {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 </head>
 <body>
 {% include "Header.html" %}
 <form method="POST">
-  {% csrf_token %}
-  <div align="center">
-    <h1>Add Medication:</h1>
-  </div>
+    {% csrf_token %}
+    <div align="center">
+        <h1>Add Medication:</h1>
+        <h3><font color="green">{{ form.message }}</font></h3>
+        <table>
+            <input type="hidden" name="id" value="{{form.id}}">
+            <tr>
+                <th>fullName:</th>
+                <td><input type="text" name="fullName" value="{{form.fullName}}"></td>
+                <td style="position: fixed; color: red;">{{ form.inputError.fullName}}</td>
+            </tr>
+            <tr>
+                <th>illness:</th>
+                <td>
+                    {{form.preload.illness | safe }}
+                </td>
+                <td style="position: fixed; color: red;">{{ form.inputError.illness}}</td>
+            </tr>
+            <tr>
+                <th>prescriptionDate:</th>
+                <td><input type="date" name="prescriptionDate" value="{{form.prescriptionDate}}"></td>
+                <td style="position: fixed; color: red;">{{form.inputError.prescriptionDate}}</td>
+            </tr>
+            <tr>
+                <th>dosage:</th>
+                <td><input type="text" name="dosage" value="{{form.dosage}}"></td>
+                <td style="position: fixed; color: red;">{{ form.inputError.dosage }}</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><input type="submit" value="save"></td>
+            </tr>
+        </table>
+    </div>
 </form>
 
 </body>

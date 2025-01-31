@@ -81,5 +81,14 @@ class DataValidator:
         else:
             return True  # Returns True if it's not a valid integer
 
+    @classmethod
+    def isDosage(cls, val):
+        if re.match(r"^\d+(\.\d+)?\s?(mg|g|ml|L|tablets|capsules|drops)?$", val, re.IGNORECASE):
+            return False  # Valid dosage
+        else:
+            return True  # Invalid dosage
+
+
+
 
 

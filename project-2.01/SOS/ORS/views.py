@@ -22,6 +22,8 @@ from .ctl.PhysicianCtl import PhysicianCtl
 from .ctl.PhysicianListCtl import PhysicianListCtl
 from .ctl.MedicationCtl import MedicationCtl
 from .ctl.MedicationListCtl import MedicationListCtl
+from .ctl.Follow_UpCtl import Follow_UpCtl
+from .ctl.Follow_UpListCtl import Follow_UpListCtl
 
 
 @csrf_exempt

@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.db import models
+from django.db.models import DateField
 
 
 class User(models.Model):
@@ -135,3 +136,19 @@ class Medication(models.Model):
 
     class Meta:
         db_table = 'sos_Medication'
+
+
+class Follow_Up(models.Model):
+    client = models.CharField(max_length=30)
+    physician = models.CharField(max_length=30)
+    appointmentDate = models.DateField(max_length=15)
+    charges = models.CharField(max_length=30)
+
+    def get_key(self):
+        return str(self.id)
+
+    def get_value(self):
+        return self.client + '' + self.physician
+
+    class Meta:
+        db_table = 'sos_Follow_Up'

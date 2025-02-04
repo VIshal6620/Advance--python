@@ -11,28 +11,41 @@ class Follow_UpCtl(BaseCtl):
 
     def preload(self, request, params):
 
+        # Initialize form dictionary for client and physician
         self.form["client"] = request.POST.get('client', '')
         self.form["physician"] = request.POST.get('physician', '')
 
-
-        if (params['id'] > 0):
+        # Fetch existing data if ID is greater than 0
+        if params.get('id', 0) > 0:
             obj = self.get_service().get(params['id'])
             self.form["client"] = obj.client
-            self.form["physician"] = obj.physician
+            self.form["physician"] = obj.physician  # Reusing the same object
 
-        self.static_preload = {"Yes": "Yes", "No": "No"}
-        self.static_preload = {"Yes": "Yes", "No": "No"}
+        # Static preload data for clients and physicians
+        self.static_client_preload = {
+            "John Doe": "John Doe",
+            "Michael Johnson": "Michael Johnson"
+        }
 
+        self.static_physician_preload = {
+            "Dr. Vishal": "Dr. Vishal",
+            "Dr. Smith": "Dr. Smith"
+        }
 
+        # Initialize preload dictionary
+        self.form["preload"] = {}
+
+        # Populate dropdown lists separately
         self.form["preload"]["client"] = HTMLUtility.get_list_from_dict(
             'client',
             self.form["client"],
-            self.static_preload
+            self.static_client_preload
         )
+
         self.form["preload"]["physician"] = HTMLUtility.get_list_from_dict(
             'physician',
             self.form["physician"],
-            self.static_preload
+            self.static_physician_preload
         )
 
 
@@ -78,7 +91,7 @@ class Follow_UpCtl(BaseCtl):
             inputError['physician'] = "physician is Required"
             self.form['error'] = True
         else:
-            if (DataValidator.isalphacehck(self.form['physician'])):
+            if (DataValidator.isDrName(self.form['physician'])):
                 inputError['physician'] = "physician only contain Letters"
                 self.form['error'] = True
 
@@ -86,7 +99,7 @@ class Follow_UpCtl(BaseCtl):
             inputError['appointmentDate'] = "appointmentDate is Required"
             self.form['error'] = True
         else:
-            if (DataValidator.isDate(self.form['appointmentDate'])):
+            if (DataValidator.isAppointmentDate(self.form['appointmentDate'])):
                 inputError['appointmentDate'] = "appointmentDate only contain Letters"
                 self.form['error'] = True
 
@@ -94,7 +107,7 @@ class Follow_UpCtl(BaseCtl):
             inputError['charges'] = "charges is Required"
             self.form['error'] = True
         else:
-            if (DataValidator.ischeck(self.form['charges'])):
+            if (DataValidator.isInteger(self.form['charges'])):
                 inputError['charges'] = "charges only contain Letters"
                 self.form['error'] = True
 

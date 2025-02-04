@@ -89,6 +89,24 @@ class DataValidator:
             return True  # Invalid dosage
 
 
+    @classmethod
+    def isDrName(self, val):
+        """Validates if the name starts with 'Dr.' and contains only alphabets and spaces."""
+        if re.match(r"^Dr\.\s?[a-zA-Z\s]+$", val):
+            return False  # Valid "Dr." name
+        else:
+            return True  # Invalid "Dr." name (e.g., contains digits, special characters, or incorrect format)
 
+    @classmethod
+    def isAppointmentDate(self, val):
+        """Validates if the appointment date is in YYYY-MM-DD format and in the future."""
+        if re.match("([0-2]\d{3})-(0\d|1[0-2])-([0-2]\d|3[01])", val):
+            # Check if the date is greater than today's date
+            if datetime.strptime(val, "%Y-%m-%d") <= datetime.strptime(str(date.today()), "%Y-%m-%d"):
+                return True  # Invalid (the appointment date is in the past or today)
+            else:
+                return False  # Valid (the appointment date is in the future)
+        else:
+            return True  # Invalid (does not match the expected date format)
 
 

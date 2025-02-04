@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+{% include "Header.html" %}
+<form method="POST">
+    {% csrf_token %}
+    <div align="center">
+        <h1>Add Staff_Member:</h1>
+        <h3><font color="green">{{ form.message }}</font></h3>
+        <table>
+            <input type="hidden" name="id" value="{{form.id}}">
+            <tr>
+                <th>fullName:</th>
+                <td><input type="text" name="fullName" value="{{ form.fullName }}"></td>
+                <td style="position: fixed; color: red">{{ form.inputError.fullName }}</td>
+            </tr>
+            <tr>
+                <th>joiningDate:</th>
+                <td><input type="date" name="joiningDate" value="{{form.joiningDate }}"></td>
+                <td style="position: fixed; color: red;">{{ form.inputError.joiningDate }}</td>
+            </tr>
+            <tr>
+                <th>division:</th>
+                <td>
+                    {{ form.preload.division|safe }}
+                </td>
+                <td style="position: fixed; color: red;">{{ form.inputError.division }}</td>
+            </tr>
+            <tr>
+                <th>previousEmployer</th>
+                <td><input type="text" name="previousEmployer" value="{{form.previousEmployer}}"></td>
+                <td style="position: fixed; color: red;">{{ form.inputError.previousEmployer }}</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><input type="submit" value="save"></td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+</body>
+</html>

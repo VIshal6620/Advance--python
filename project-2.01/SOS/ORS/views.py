@@ -25,7 +25,7 @@ from .ctl.MedicationListCtl import MedicationListCtl
 from .ctl.Follow_UpCtl import Follow_UpCtl
 from .ctl.Follow_UpListCtl import Follow_UpListCtl
 from .ctl.Staff_MemberCtl import Staff_MemberCtl
-
+from .ctl.Staff_MemberListCtl import Staff_MemberListCtl
 
 @csrf_exempt
 def action(request, page="", operation="", id=0):

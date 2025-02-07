@@ -167,3 +167,19 @@ class Staff_Member(models.Model):
 
     class Meta:
         db_table = 'sos_Staff_Member'
+
+
+class Position(models.Model):
+    designation = models.CharField(max_length=50)
+    openingDate = models.DateField(max_length=12)
+    requiredExperience = models.CharField(max_length=30)
+    condition = models.CharField(max_length=15)
+
+    def get_key(self):
+        return (self.id)
+
+    def get_value(self):
+        return self.condition
+
+    class Meta:
+        db_table = 'sos_Position'

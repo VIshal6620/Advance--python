@@ -109,4 +109,9 @@ class DataValidator:
         else:
             return True  # Invalid (does not match the expected date format)
 
+    @classmethod
+    def isValidExperience(cls, val):
+        pattern = r"^\d+(-\d+)?\+?\s?(years)?$|^Fresher$"
+        return bool(re.match(pattern, val, re.IGNORECASE))
+
 

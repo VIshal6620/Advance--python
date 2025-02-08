@@ -4,6 +4,7 @@ from ..ctl.BaseCtl import BaseCtl
 from ..models import Position
 from ..utility.DataValidator import DataValidator
 from ..utility.HtmlUtility import HTMLUtility
+from django.http import HttpResponse
 
 
 class PositionCtl(BaseCtl):
@@ -86,6 +87,8 @@ class PositionCtl(BaseCtl):
 
         return self.form['error']
 
+
+
     def display(self, request, params={}):
         if (params['id'] > 0):
             obj = self.get_service().get(params['id'])
@@ -96,7 +99,7 @@ class PositionCtl(BaseCtl):
     def submit(self, request, params={}):
         r = self.form_to_model(Position())
         self.get_service().save(r)
-        self.form['message'] = "Data have Successfully Saved"
+        self.form['message'] = "Data saved successfully"
         res = render(request, self.get_template(), {'form': self.form})
         return res
 

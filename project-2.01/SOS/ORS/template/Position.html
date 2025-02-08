@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-     {% load static %}
+    {% load static %}
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 </head>
 <body>
 {% include "Header.html" %}
-<form method="POST">
+<form action="/ORS/Position/" method="POST">
     {% csrf_token %}
     <div align="center">
         <h1>Add Position:</h1>
@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <th>openingDate</th>
-                <td><input type="date" name="openingDate" value="{{form.openingDate}}" style="width: 95%"></td>
+                <td><input type="date" name="openingDate" value="{{form.openingDate}}" style="width: 95%;"></td>
                 <td style="position: fixed; color: red;">{{ form.inputError.openingDate }}</td>
             </tr>
             <tr>
@@ -35,6 +35,7 @@
                 <td>
                     {{ form.preload.condition|safe }}
                 </td>
+                <td style="position: fixed; color: red;"> {{ form.inputError.condition }}</td>
             </tr>
             <tr>
                 <th></th>

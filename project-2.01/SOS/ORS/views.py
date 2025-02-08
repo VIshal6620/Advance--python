@@ -27,6 +27,7 @@ from .ctl.Follow_UpListCtl import Follow_UpListCtl
 from .ctl.Staff_MemberCtl import Staff_MemberCtl
 from .ctl.Staff_MemberListCtl import Staff_MemberListCtl
 from .ctl.PositionCtl import PositionCtl
+from .ctl.PositionListCtl import PositionListCtl
 
 @csrf_exempt
 def action(request, page="", operation="", id=0):

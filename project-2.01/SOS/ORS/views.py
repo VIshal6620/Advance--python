@@ -28,6 +28,8 @@ from .ctl.Staff_MemberCtl import Staff_MemberCtl
 from .ctl.Staff_MemberListCtl import Staff_MemberListCtl
 from .ctl.PositionCtl import PositionCtl
 from .ctl.PositionListCtl import PositionListCtl
+from .ctl.CustomerCtl import CustomerCtl
+from .ctl.CustomerListCtl import CustomerListCtl
 
 @csrf_exempt
 def action(request, page="", operation="", id=0):

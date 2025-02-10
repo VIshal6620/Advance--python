@@ -1,22 +1,22 @@
-from ..models import Client
-from ..utility.DataValidator import DataValidator
-from .BaseService import BaseService
 from django.db import connection
+from ..Service.BaseService import BaseService
+from ..models import Customer
+from ..utility.DataValidator import DataValidator
 
-class ClientService(BaseService):
+class CustomerService(BaseService):
 
     def search(self, params):
         pageNo = (params["pageNo"] - 1) * self.pageSize
-        sql = "select * from sos_Client where 1=1"
-        val = params.get("fullName", None)
+        sql = "select * from sos_Customer where 1=1"
+        val = params.get("clientName", None)
         if DataValidator.isNotNull(val):
-            sql += " and fullName like '" + val + "%%'"
+            sql += " and clientName like '" + val + "%%'"
         sql += " limit %s, %s"
         cursor = connection.cursor()
         print("--------", sql, pageNo, self.pageSize)
         cursor.execute(sql, [pageNo, self.pageSize])
         result = cursor.fetchall()
-        columnName = ("id", "fullName", "appointmentDate", "phone", "illness")
+        columnName = ("id", "clientName", "location", "contactNumber", "importance")
         res = {
             "data": [],
         }
@@ -27,4 +27,4 @@ class ClientService(BaseService):
         return res
 
     def get_model(self):
-        return Client
+        return Customer

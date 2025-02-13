@@ -199,3 +199,19 @@ class Customer(models.Model):
 
     class Meta:
         db_table = 'sos_Customer'
+
+
+class Compensation(models.Model):
+    staffMember = models.CharField(max_length=30)
+    paymentAmount = models.CharField(max_length=20)
+    dateApplied = models.DateField(max_length=15)
+    state = models.CharField(max_length=20)
+
+    def get_key(self):
+        return (self.id)
+
+    def get_value(self):
+        return self.staffMember + '' + self.state
+
+    class Meta:
+        db_table = 'sos_Compensation'

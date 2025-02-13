@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% include "Header.html" %}
+<form method="POST">
+    {% csrf_token %}
+    <div align="center">
+        <h1>AddCompensation</h1>
+        <h3><font color="green">{{form.message}}</font></h3>
+        <table>
+            <input type="hidden" name="id" value="{{form.id}}">
+            <tr>
+                <th>staffMember</th>
+                <td>
+                    {{ form.preload.staffMember|safe }}
+                </td>
+                <td style="position: fixed; color: red;">{{form.inputError.staffMember}}</td>
+            </tr>
+            <tr>
+                <th>paymentAmount</th>
+                <td><input type="text" name="paymentAmount" value="{{form.paymentAmount}}"></td>
+                <td style="position: fixed; color: red;">{{form.inputError.paymentAmount}}</td>
+            </tr>
+            <tr>
+                <th>dateApplied:</th>
+                <td><input type="date" name="dateApplied" value="{{ form.dateApplied }}"></td>
+                <td style="position: fixed; color: red;">{{ form.inputError.dateApplied }}</td>
+            </tr>
+            <tr>
+                <th>state</th>
+                <td>
+                    {{ form.preload.state|safe }}
+                </td>
+                <td style="position: fixed; color: red;">{{ form.inputError.state }}</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><input type="submit" value="save"></td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+</body>
+</html>
